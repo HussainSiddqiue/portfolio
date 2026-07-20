@@ -46,7 +46,7 @@ export default function Hero() {
         aria-hidden
         className="pointer-events-none absolute -inset-y-24 inset-x-0 bg-cover bg-center opacity-60"
         style={{
-          backgroundImage: "url('/images/hero-bg.png')",
+          backgroundImage: "url('/images/hero-bg.jpg')",
           y: reduce ? 0 : bgY,
         }}
       />

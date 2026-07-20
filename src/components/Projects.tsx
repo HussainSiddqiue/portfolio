@@ -32,13 +32,13 @@ const coverFor: Record<string, string> = {
   "ai-chatbot-saas": "/images/proj-ai.png",
   "ui-component-library": "/images/ui-mobile.png",
   "law-firm-site": "/images/proj-web.png",
-  "sells-expert": "/images/proj-saas.png",
-  "vega-noir": "/images/proj-web.png",
+  "sells-expert": "/images/proj-leadgen.jpg",
+  "vega-noir": "/images/proj-ecommerce.jpg",
   "construction-site-chatbot": "/images/ui-chatbot.png",
-  "wordpress-client-work": "/images/proj-web.png",
-  "youtube-pipeline": "/images/proj-devops.png",
-  "trading-automation": "/images/terminal.png",
-  "marketing-automation": "/images/proj-ai.png",
+  "wordpress-client-work": "/images/proj-wordpress.jpg",
+  "youtube-pipeline": "/images/proj-video.jpg",
+  "trading-automation": "/images/proj-trading.jpg",
+  "marketing-automation": "/images/proj-marketing.jpg",
 };
 
 function Card({ p }: { p: Project }) {

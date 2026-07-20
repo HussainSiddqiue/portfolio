@@ -1,8 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { site } from "@/lib/site";
+import { TiltCard } from "@/components/ui/TiltCard";
+import { Counter } from "@/components/ui/Counter";
+import { useReducedMotionSafe } from "@/components/ui/useReducedMotionSafe";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -27,23 +30,44 @@ const termLines = [
 const tags = ["Full-Stack", "DevOps / Cloud", "CI/CD & IaC", "Production support"];
 
 export default function Hero() {
+  const reduce = useReducedMotionSafe();
+  const { scrollY } = useScroll();
+  // Layered parallax: background drifts slower than the content above it,
+  // while the content itself gently recedes as you scroll past the hero.
+  const bgY = useTransform(scrollY, [0, 700], [0, 130]);
+  const glowY = useTransform(scrollY, [0, 700], [0, 60]);
+  const contentOpacity = useTransform(scrollY, [0, 550], [1, 0.35]);
+  const contentScale = useTransform(scrollY, [0, 550], [1, 0.97]);
+  const contentY = useTransform(scrollY, [0, 550], [0, 46]);
+
   return (
     <section id="top" className="relative overflow-hidden">
-      <div
+      <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-60"
-        style={{ backgroundImage: "url('/images/hero-bg.png')" }}
+        className="pointer-events-none absolute -inset-y-24 inset-x-0 bg-cover bg-center opacity-60"
+        style={{
+          backgroundImage: "url('/images/hero-bg.png')",
+          y: reduce ? 0 : bgY,
+        }}
       />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-bg/30 via-bg/10 to-bg"
       />
-      <div
+      <motion.div
         aria-hidden
         className="pointer-events-none absolute -top-40 left-1/2 h-[40rem] w-[60rem] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]"
+        style={{ y: reduce ? 0 : glowY }}
       />
 
-      <div className="relative mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-32">
+      <motion.div
+        style={
+          reduce
+            ? undefined
+            : { opacity: contentOpacity, scale: contentScale, y: contentY }
+        }
+        className="relative mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-32"
+      >
         {/* left column */}
         <motion.div variants={container} initial="hidden" animate="show">
           <motion.div
@@ -114,6 +138,11 @@ export default function Hero() {
           transition={{ duration: 0.8, ease, delay: 0.2 }}
           className="relative"
         >
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <TiltCard max={5} className="group/tilt">
           <div className="overflow-hidden rounded-xl border border-line bg-bg-elev/80 shadow-2xl shadow-black/40 backdrop-blur">
             <div className="flex items-center gap-2 border-b border-line bg-surface/40 px-4 py-3">
               <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
@@ -148,20 +177,24 @@ export default function Hero() {
               </motion.div>
             </div>
           </div>
+            </TiltCard>
+          </motion.div>
 
           <div className="mt-4 grid grid-cols-3 gap-3 font-mono text-xs">
             {site.stats.map((s) => (
               <div
                 key={s.label}
-                className="rounded-lg border border-line bg-surface/30 px-3 py-3 text-center"
+                className="rounded-lg border border-line bg-surface/30 px-3 py-3 text-center transition-colors hover:border-accent/30"
               >
-                <div className="text-lg text-accent">{s.value}</div>
+                <div className="text-lg text-accent">
+                  <Counter value={s.value} />
+                </div>
                 <div className="mt-0.5 leading-tight text-fg-dim">{s.label}</div>
               </div>
             ))}
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

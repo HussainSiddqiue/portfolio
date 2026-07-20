@@ -7,6 +7,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { MotionProvider } from "@/components/ui/MotionProvider";
 
 const sans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -84,9 +85,11 @@ export default function RootLayout({
       className={`${sans.variable} ${mono.variable} ${display.variable} ${serif.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-bg text-fg flex flex-col">
-        <ScrollProgress />
-        {children}
-        <div className="grain" aria-hidden />
+        <MotionProvider>
+          <ScrollProgress />
+          {children}
+          <div className="grain" aria-hidden />
+        </MotionProvider>
       </body>
     </html>
   );

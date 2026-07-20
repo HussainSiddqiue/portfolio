@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
+import { StackScene } from "@/components/ui/StackScene";
 import {
   Container,
   Cloud,
@@ -53,20 +53,20 @@ export default function DevOps() {
       intro="Deployment and operations are not an afterthought — they are half the job. This is the part of my work that sets it apart."
     >
       <Reveal>
-        <div className="relative mb-8 h-36 w-full overflow-hidden rounded-xl border border-line sm:h-44">
-          <Image
-            src="/images/terminal.png"
-            alt=""
-            fill
-            sizes="(max-width: 1024px) 100vw, 1024px"
-            className="object-cover opacity-80"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/30 to-transparent" />
+        <div className="relative mb-8 h-72 w-full overflow-hidden rounded-xl border border-line bg-bg-elev/60 sm:h-80">
+          <div className="bg-grid bg-grid-fade absolute inset-0 opacity-50" />
+          <StackScene />
+          <div className="pointer-events-none absolute left-4 top-4 font-mono text-xs text-fg-dim">
+            <span className="text-accent">$</span> infra --layers
+          </div>
+          <div className="pointer-events-none absolute bottom-4 right-4 hidden font-mono text-[10px] uppercase tracking-[0.2em] text-fg-dim sm:block">
+            edge → app → data → infra
+          </div>
         </div>
       </Reveal>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {caps.map((c, i) => (
-          <Reveal key={c.title} delay={i * 0.05}>
+          <Reveal key={c.title} delay={i * 0.05} tilt>
             <div className="group h-full rounded-xl border border-line bg-surface/30 p-5 transition-colors hover:border-accent/40">
               <c.icon className="h-6 w-6 text-accent" />
               <div className="mt-4 font-display text-base font-semibold text-fg">

@@ -44,6 +44,7 @@ export const skillGroups = [
       "cPanel / Hostinger",
       "Resend",
       "Upstash",
+      "Playwright (E2E/QA)",
     ],
   },
   {

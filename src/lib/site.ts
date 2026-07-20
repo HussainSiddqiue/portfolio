@@ -21,8 +21,8 @@ export const site = {
   },
   // Headline stats — confirm exact numbers with real data.
   stats: [
-    { value: "10+", label: "projects shipped" },
-    { value: "2", label: "intl. SaaS platforms" },
+    { value: "15+", label: "projects shipped" },
+    { value: "3", label: "intl. SaaS platforms" },
     { value: "100%", label: "build → ship → run" },
   ],
 };

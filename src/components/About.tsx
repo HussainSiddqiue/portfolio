@@ -28,16 +28,16 @@ const principles = [
 
 const experience = [
   {
-    role: "Full-Stack Developer",
+    role: "Senior DevOps Engineer",
     org: "Winstons Inteligência — Brazil",
-    period: "Remote · Dec 2025 – Present",
-    text: "Building and maintaining production web platforms, backend systems, APIs, databases and third-party integrations across multiple company products.",
+    period: "Full remote · Dec 2025 – Present",
+    text: "Running production infrastructure, deployments and CI/CD for multiple company SaaS platforms on AWS — alongside full-stack feature work across backends, APIs and frontends.",
   },
   {
     role: "Freelance Full-Stack & DevOps Developer",
     org: "Independent — Pakistan & International",
-    period: "Ongoing",
-    text: "Delivering SaaS products, business websites, AI automation and cloud deployments for clients across Pakistan, the UK and Europe.",
+    period: "2024 – Present · 2+ years",
+    text: "Delivering SaaS products, e-commerce, business websites, AI automation and cloud deployments for clients across Pakistan, the UK and Europe.",
   },
 ];
 
@@ -70,13 +70,10 @@ export default function About() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.1}>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {principles.map((p) => (
-              <div
-                key={p.title}
-                className="rounded-xl border border-line bg-surface/30 p-4"
-              >
+        <div className="grid gap-3 sm:grid-cols-2">
+          {principles.map((p, i) => (
+            <Reveal key={p.title} delay={0.08 * i} tilt className="h-full">
+              <div className="h-full rounded-xl border border-line bg-surface/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30">
                 <p.icon className="h-5 w-5 text-accent" />
                 <div className="mt-3 font-display text-sm font-semibold text-fg">
                   {p.title}
@@ -85,9 +82,9 @@ export default function About() {
                   {p.text}
                 </div>
               </div>
-            ))}
-          </div>
-        </Reveal>
+            </Reveal>
+          ))}
+        </div>
       </div>
 
       <div className="mt-16 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">

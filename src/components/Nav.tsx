@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { site, nav } from "@/lib/site";
 
@@ -86,29 +87,40 @@ export default function Nav() {
         </div>
       </div>
 
-      {open && (
-        <div className="border-t border-line bg-bg px-5 py-4 md:hidden">
-          <nav className="flex flex-col gap-3">
-            {nav.map((n) => (
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="overflow-hidden border-t border-line bg-bg md:hidden"
+          >
+            <nav className="flex flex-col gap-3 px-5 py-4">
+              {nav.map((n, i) => (
+                <motion.a
+                  key={n.id}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * i, duration: 0.25 }}
+                  href={`#${n.id}`}
+                  onClick={() => setOpen(false)}
+                  className="text-sm text-fg-muted"
+                >
+                  {n.label}
+                </motion.a>
+              ))}
               <a
-                key={n.id}
-                href={`#${n.id}`}
+                href="#contact"
                 onClick={() => setOpen(false)}
-                className="text-sm text-fg-muted"
+                className="mt-2 rounded-md bg-accent px-4 py-2 text-center text-sm font-medium text-[#05130c]"
               >
-                {n.label}
+                Start a project
               </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={() => setOpen(false)}
-              className="mt-2 rounded-md bg-accent px-4 py-2 text-center text-sm font-medium text-[#05130c]"
-            >
-              Start a project
-            </a>
-          </nav>
-        </div>
-      )}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

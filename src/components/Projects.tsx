@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { projects, type Project } from "@/data/projects";
 import { Lock, ArrowUpRight } from "lucide-react";
 
@@ -12,6 +13,11 @@ const groups: { tier: Project["tier"]; label: string; note: string }[] = [
     note: "Production platforms — details confidential",
   },
   { tier: "Client", label: "Client Work", note: "Selected freelance & contract projects" },
+  {
+    tier: "Automation",
+    label: "Automation",
+    note: "Systems I built to run my own operations",
+  },
 ];
 
 // Abstract cover art mapped by theme (no real screenshots — keeps confidential work safe).
@@ -26,12 +32,19 @@ const coverFor: Record<string, string> = {
   "ai-chatbot-saas": "/images/proj-ai.png",
   "ui-component-library": "/images/ui-mobile.png",
   "law-firm-site": "/images/proj-web.png",
+  "sells-expert": "/images/proj-saas.png",
+  "vega-noir": "/images/proj-web.png",
+  "construction-site-chatbot": "/images/ui-chatbot.png",
+  "wordpress-client-work": "/images/proj-web.png",
+  "youtube-pipeline": "/images/proj-devops.png",
+  "trading-automation": "/images/terminal.png",
+  "marketing-automation": "/images/proj-ai.png",
 };
 
 function Card({ p }: { p: Project }) {
   const cover = coverFor[p.slug];
   return (
-    <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-surface/30 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl hover:shadow-black/30">
+    <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-surface/30 transition-all duration-300 hover:border-accent/40 hover:shadow-xl hover:shadow-black/30">
       {cover && (
         <div className="relative h-32 w-full overflow-hidden border-b border-line">
           <Image
@@ -128,8 +141,10 @@ export default function Projects() {
               </div>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {items.map((p, i) => (
-                  <Reveal key={p.slug} delay={(i % 3) * 0.05}>
-                    <Card p={p} />
+                  <Reveal key={p.slug} delay={(i % 3) * 0.06} className="h-full" tilt>
+                    <TiltCard className="group/tilt">
+                      <Card p={p} />
+                    </TiltCard>
                   </Reveal>
                 ))}
               </div>

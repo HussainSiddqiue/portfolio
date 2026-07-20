@@ -14,7 +14,7 @@ export default function Skills() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((g, i) => (
           <Reveal key={g.label} delay={i * 0.05}>
-            <div className="h-full rounded-xl border border-line bg-surface/30 p-5">
+            <div className="h-full rounded-xl border border-line bg-surface/30 p-5 transition-colors duration-300 hover:border-accent/30">
               <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-accent">
                 <span className="text-fg-dim">{String(i + 1).padStart(2, "0")}</span>
                 {g.label}
@@ -23,7 +23,7 @@ export default function Skills() {
                 {g.items.map((it) => (
                   <span
                     key={it}
-                    className="rounded-md border border-line bg-bg-elev px-2.5 py-1 font-mono text-xs text-fg-muted"
+                    className="rounded-md border border-line bg-bg-elev px-2.5 py-1 font-mono text-xs text-fg-muted transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:text-fg"
                   >
                     {it}
                   </span>

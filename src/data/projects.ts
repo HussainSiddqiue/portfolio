@@ -1,5 +1,5 @@
 export type Disclosure = "full" | "generic" | "company" | "client";
-export type Tier = "Featured" | "Enterprise" | "Client";
+export type Tier = "Featured" | "Enterprise" | "Client" | "Automation";
 
 export type Project = {
   slug: string;
@@ -59,6 +59,32 @@ export const projects: Project[] = [
       "Redis (Upstash)",
       "Cloudflare R2",
       "Anthropic Claude",
+    ],
+  },
+
+  {
+    slug: "sells-expert",
+    name: "Sells Expert",
+    category: "AI Lead-Gen & Outreach Suite",
+    tier: "Featured",
+    disclosure: "full",
+    status: "Running · my product",
+    blurb:
+      "A self-hosted sales engine under my Fusion Deployment brand — scrapes and enriches leads, AI-personalizes pitches, runs autopilot cold-email and WhatsApp sequences, and reads replies with an AI deal brain. Also licensed to a client as a white-label build.",
+    highlights: [
+      "Autopilot sequencer: warmup ramps, daily caps, stop-on-reply",
+      "AI reply classification + auto-drafted responses over IMAP",
+      "Deliverability stack: SMTP verification, suppression, bounce auto-pause",
+      "White-label client copies protected by Ed25519 licensing",
+    ],
+    stack: [
+      "Node.js",
+      "Playwright",
+      "Anthropic Claude",
+      "OpenAI",
+      "IMAP / SMTP",
+      "Twilio",
+      "WhatsApp Cloud API",
     ],
   },
 
@@ -205,6 +231,74 @@ export const projects: Project[] = [
     stack: ["React", "Vite", "Radix UI", "Tailwind CSS"],
   },
   {
+    slug: "vega-noir",
+    name: "Vega Noir",
+    category: "E-commerce Storefront · Client",
+    tier: "Client",
+    disclosure: "full",
+    region: "Pakistan",
+    status: "Live",
+    blurb:
+      "A premium activewear storefront for a Karachi fashion brand — custom-built commerce with WhatsApp and cash-on-delivery checkout, 3D product showcases and an order-management dashboard.",
+    highlights: [
+      "WhatsApp + COD checkout with server-side price recomputation",
+      "Admin orders dashboard backed by Upstash Redis",
+      "Three.js 3D showcases, GSAP motion and full SEO (JSON-LD, sitemap)",
+    ],
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Three.js",
+      "GSAP",
+      "Upstash Redis",
+    ],
+    link: "https://www.veganoir.shop/",
+  },
+  {
+    slug: "construction-site-chatbot",
+    name: "Construction Brand Website + AI Assistant",
+    category: "Website + AI · Client · NDA",
+    tier: "Client",
+    disclosure: "client",
+    region: "Pakistan",
+    status: "Under NDA",
+    confidential: true,
+    blurb:
+      "The public website for a real-estate & construction brand, with one AI bot brain serving four channels — website chat, WhatsApp, Messenger and Instagram — plus a construction cost calculator with admin-managed rates.",
+    highlights: [
+      "Single bot engine across 4 messaging channels via thin adapters",
+      "Cost calculator backed by admin-managed rate tables",
+      "Hardened public routes: rate limits, input caps, PII-safe logging",
+    ],
+    stack: [
+      "Next.js",
+      "Vercel AI SDK",
+      "OpenAI",
+      "Drizzle / PostgreSQL",
+      "WhatsApp Cloud API",
+      "Meta APIs",
+    ],
+  },
+  {
+    slug: "wordpress-client-work",
+    name: "European WordPress Client Sites",
+    category: "WordPress · Client",
+    tier: "Client",
+    disclosure: "generic",
+    region: "Netherlands",
+    status: "Client work",
+    blurb:
+      "Ongoing WordPress engagements for two Dutch businesses — a real-estate agency relaunch with full Dutch localization and a custom REST bridge plugin, plus Elementor build-out for a recruitment agency.",
+    highlights: [
+      "Custom REST plugin: clones listings and writes meta the stock API can't",
+      "Full EN→NL localization engine, including unit conversion",
+      "Automated cross-device QA: 86 checks with screenshot evidence",
+    ],
+    stack: ["WordPress", "PHP", "Elementor", "Houzez", "REST API", "GoHighLevel"],
+  },
+  {
     slug: "law-firm-site",
     name: "UK Law Firm Website",
     category: "Website · Client",
@@ -220,5 +314,63 @@ export const projects: Project[] = [
       "Responsive and SEO-ready",
     ],
     stack: ["WordPress", "PHP", "Custom theme"],
+  },
+
+  // ---- Automation (personal systems) ----
+  {
+    slug: "youtube-pipeline",
+    name: "Faceless YouTube Content Pipeline",
+    category: "Content Automation",
+    tier: "Automation",
+    disclosure: "full",
+    status: "Running · my system",
+    blurb:
+      "A zero-edit video factory: picks a dataset, writes the script, synthesizes voiceover, renders a long-form video, a Short and a thumbnail with Remotion, masters audio and uploads to YouTube — all on free CI runners.",
+    highlights: [
+      "Remotion (React) renders video, Short and thumbnail from JSON data",
+      "Multi-provider TTS with a coverage gate that fails the build",
+      "Scheduled cron publishing with no-repeat rotation and webhook alerts",
+    ],
+    stack: [
+      "Node.js",
+      "Remotion",
+      "React",
+      "YouTube Data API",
+      "Piper TTS",
+      "ffmpeg",
+      "GitHub Actions",
+    ],
+  },
+  {
+    slug: "trading-automation",
+    name: "Funded-Account Trading Automation",
+    category: "Fintech Automation",
+    tier: "Automation",
+    disclosure: "full",
+    status: "Running · my system",
+    blurb:
+      "A semi-automated desk for a funded forex account: a multi-instrument setup scanner with news and crisis guards, prop-firm-aware risk sizing, automatic trade journaling and weekly performance reports — strictly human-in-the-loop.",
+    highlights: [
+      "Real-time scanner across 5 instruments with alert popups",
+      "Risk guard models prop-firm drawdown limits and broker-accurate lot sizes",
+      "Auto journal import from MT5 with R-multiples and session tags",
+    ],
+    stack: ["Python", "MetaTrader 5", "pandas", "Tkinter", "Task Scheduler"],
+  },
+  {
+    slug: "marketing-automation",
+    name: "Marketing Automation Suite",
+    category: "AI Marketing Toolkit",
+    tier: "Automation",
+    disclosure: "full",
+    status: "Working demo · launching soon",
+    blurb:
+      "An agency-in-a-box marketing toolkit: an offline-first dashboard for content creation, scheduling and client reporting, plus an automation layer that publishes to Meta, triages ads and qualifies leads with AI.",
+    highlights: [
+      "Zero-dependency Node backend + single-file offline dashboard",
+      "Publishes to Facebook/Instagram with AI ad triage and lead scoring",
+      "Dry-run-safe by default; Anthropic, OpenAI, Gemini and DeepSeek support",
+    ],
+    stack: ["Node.js", "Vanilla JS", "Meta APIs", "WhatsApp Cloud API", "Multi-LLM"],
   },
 ];

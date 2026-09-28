@@ -318,6 +318,57 @@ export const projects: Project[] = [
 
   // ---- Automation (personal systems) ----
   {
+    slug: "whatsapp-assistant",
+    name: "WhatsApp Personal Manager",
+    category: "Conversational Automation",
+    tier: "Automation",
+    disclosure: "full",
+    status: "Running · my system",
+    blurb:
+      "A personal manager that lives inside WhatsApp, so there is no app to open. Expenses, notes and reminders are captured by typing, speaking, photographing a bill or forwarding a PDF — in everyday Roman Urdu — and reviewed on an installable dashboard.",
+    highlights: [
+      "Meta Cloud API webhook hardened with HMAC-SHA256 signature checks, a sender allow-list and idempotent delivery",
+      "Voice notes, photos and PDFs read natively by the model — no transcription, OCR or file storage in the path",
+      "Automatic failover to a second LLM provider when the primary is rate-limited, holding running cost at zero",
+      "Cloudflare Worker cron delivers reminders to the minute, with an atomic claim that rules out double sends",
+      "Installable PWA dashboard behind a fail-closed session gate and login rate limiting",
+    ],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Supabase (PostgreSQL)",
+      "WhatsApp Cloud API",
+      "Gemini",
+      "OpenAI",
+      "Cloudflare Workers",
+      "Vercel",
+    ],
+  },
+  {
+    slug: "wireguard-vpn",
+    name: "Single-Command WireGuard VPN",
+    category: "Infrastructure Automation",
+    tier: "Automation",
+    disclosure: "full",
+    status: "Running · my system",
+    blurb:
+      "One idempotent script that stands up a private WireGuard VPN on a free-tier cloud box and can be re-run safely any time. Provider-agnostic across Oracle Cloud, Hetzner, DigitalOcean and RackNerd.",
+    highlights: [
+      "Idempotent provisioning — reruns converge instead of duplicating firewall rules or swap entries",
+      "Two firewall layers reconciled: the cloud security list and Ubuntu's preloaded iptables rules",
+      "Automatic 2 GB swapfile with tuned swappiness, so Docker survives on ~1 GB Always Free instances",
+      "Containerised wg-easy pinned to a known version, with its admin UI bound to localhost only",
+    ],
+    stack: [
+      "WireGuard",
+      "Docker Compose",
+      "Bash",
+      "Ubuntu 24.04",
+      "Oracle Cloud",
+      "iptables",
+    ],
+  },
+  {
     slug: "youtube-pipeline",
     name: "Faceless YouTube Content Pipeline",
     category: "Content Automation",
